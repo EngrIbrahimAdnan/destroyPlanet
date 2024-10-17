@@ -4,8 +4,8 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div class="w-full h-screen bg-[rgb(7,12,28)] ">
-      <div class="flex justify-between items-start p-4 text-white  items-start p-4">
+    <div className=" bg-[rgb(7,12,28)]">
+      <div class="w-full h-screen justify-between items-start p-4 text-white">
         <div class="w-1/2">
           <img
             src="https://raw.githubusercontent.com/EngrIbrahimAdnan/destroyPlanet/refs/heads/main/src/app/assets/deathStar.png"
