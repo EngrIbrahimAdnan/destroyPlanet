@@ -55,17 +55,12 @@ export default function Home() {
       // setScore(score - triple);
       setTriple(triple ** 9999);
     }
-    if (score === quad) {
-      const confirmed = confirm(
-        "Quadrople your destruction pppppoooooooooweeerrr??"
-      );
-      if (score >= triple) {
-        handleClick();
+    if (score >= quad) {
+      handleClick();
 
-        //   setIncrement(increment * 3);
-        //   setScore(score - triple);
-        setTriple(triple ** 9999);
-      }
+      //   setIncrement(increment * 3);
+      //   setScore(score - triple);
+      setQuad(quad ** 9999);
     }
 
     if (buttonClicks === 0) {
