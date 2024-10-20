@@ -11,11 +11,24 @@ export default function Home() {
   const [double, setDouble] = useState(10);
   const [triple, setTriple] = useState(20);
   const [quad, setQuad] = useState(30);
-
+  const [showAvailable] = useState(true);
+  const [achievementOne, setAchievementOne] = useState(100);
+  const [achievementTwo, setAchievementTwo] = useState(300);
   const [WelcomeWindowStatus, setWelcomeWindowStatus] = useState(false);
-
+  const [AchievmentWindowStatus, setAchievmentWindowStatus] = useState(false);
+  const [SecondAchievmentWindowStatus, setSecondAchievmentWindowStatus] =
+    useState(false);
   let current = 0;
 
+  const [windows, setWindows] = useState([]);
+
+  // Handle click to open a new window
+  const handleClick = () => {
+    setWindows((prevWindows) => [
+      ...prevWindows,
+      { id: prevWindows.length + 1 },
+    ]);
+  };
   // Function to toggle modal. This is a generic function to be used to set models ON and OFF
   function toggleModal(setState, state) {
     return setState(!state);
@@ -26,22 +39,22 @@ export default function Home() {
     setScore(score + increment);
 
     setButtonClicks(current);
-    if (score === double) {
+    if (score >= double) {
       // check if the user passed 10 score to give upgrade
       const confirmed = confirm("double your clicking power??");
       if (confirmed) {
         setIncrement(increment * 2); //doubles the clicking points and rests score
-        setScore(score - 10);
-        setDouble(double - 12);
+        setScore(score - double);
+        setDouble(double ** 9999);
       }
     } else {
     }
-    if (score === triple) {
+    if (score >= triple) {
       const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
       if (confirmed) {
         setIncrement(increment * 3);
-        setScore(score - 20);
-        setTriple(triple - 22);
+        setScore(score - triple);
+        setTriple(triple ** 9999);
       } else {
       }
     }
@@ -49,24 +62,31 @@ export default function Home() {
       const confirmed = confirm(
         "Quadrople your destruction pppppoooooooooweeerrr??"
       );
-      if (confirmed) {
-        setIncrement(increment * 4);
-        setScore(score - 30);
-        setQuad(quad - 33);
+      if (score >= triple) {
+        const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
+        if (confirmed) {
+          setIncrement(increment * 3);
+          setScore(score - triple);
+          setTriple(triple ** 9999);
+        }
       }
     }
 
-    current = buttonClicks + increment;
-    setScore(score + increment);
-
-    setButtonClicks(current);
-    if (current === 1) {
+    if (buttonClicks === 0) {
       return toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus);
-    } else if (current >= 15) {
-      return toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus);
+    } else if (score >= achievementOne) {
+      toggleModal(setAchievmentWindowStatus, AchievmentWindowStatus);
+      setAchievementOne(achievementOne ** 999);
+      return handleClick();
+    } else if (current === 15) {
+      return handleClick();
     }
 
     return;
+  };
+
+  const handleDelete = (id) => {
+    setWindows((prevWindows) => prevWindows.filter((win) => win.id !== id));
   };
 
   return (
@@ -137,43 +157,109 @@ export default function Home() {
           </div>
         </div>
       )}
-
       {/* use this as template for a different model */}
-      {WelcomeWindowStatus && (
+      {AchievmentWindowStatus && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
           onClick={() =>
-            toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus)
+            toggleModal(setAchievmentWindowStatus, AchievmentWindowStatus)
           }
         >
           <div
             className="bg-white p-8 rounded-lg text-center "
             onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
           >
-            <h2 className="text-2xl font-bold mb-4">
-              Welcome to The Dark Side
+            <h2 className="text-2xl font-bold mb-4 text-black-950">
+              BRUTALLLLLLLL!!!
             </h2>
-            <p className="mb-4">
-              You just destroyed your first planet. Congratulations on getting
-              the Acolyte achievement.
+            <p className="mb-4 text-black-950">
+              youre really loving all that destruction huh?
             </p>
 
             <img
-              src="https://the-death-star.netlify.app/static/media/this-is-where-the-fun-begins.59146952.gif"
+              src="https://www.icegif.com/wp-content/uploads/2021/10/icegif-998.gif"
               className="max-w-full pb-6 w-auto h-auto object-contain mx-auto"
             ></img>
 
             <button
-              className="px-4 py-2 rounded transition-all duration-300 bg-gray-200 hover:bg-gray-500 hover:opacity-75"
+              className="px-4 py-2 rounded transition-all duration-300 bg-gray-200 hover:bg-gray-500 hover:opacity-75 text-black-950"
               onClick={() =>
-                toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus)
+                toggleModal(setAchievmentWindowStatus, AchievmentWindowStatus)
               }
             >
-              Let the Fun Begin
+              proceed with your destruction
             </button>
           </div>
         </div>
       )}
+      {/* use this as template for a different model */}
+      {SecondAchievmentWindowStatus && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={() =>
+            toggleModal(
+              setSecondAchievmentWindowStatus,
+              SecondAchievmentWindowStatus
+            )
+          }
+        >
+          <div
+            className="bg-white p-8 rounded-lg text-center "
+            onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
+          >
+            <h2 className="text-2xl font-bold mb-4 text-black-950">
+              GRUESOME!!!
+            </h2>
+            <p className="mb-4 text-black-950 ">why stop now?</p>
+
+            <img
+              src="https://preview.redd.it/7o8lcml8tiu31.gif?width=500&auto=webp&s=604d6b1d687a48e7ed06544be0df9ef834b396a1"
+              className="max-w-full pb-6 w-auto h-auto object-contain mx-auto"
+            ></img>
+
+            <button
+              className="px-4 py-2 rounded transition-all duration-300 bg-gray-200 hover:bg-gray-500 hover:opacity-75 text-black-950"
+              onClick={() =>
+                toggleModal(
+                  setSecondAchievmentWindowStatus,
+                  SecondAchievmentWindowStatus
+                )
+              }
+            >
+              BURN IT TO HELLLLLLLL!!!
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showAvailable && (
+        <div
+          className="absolute left-10   text-white  "
+          style={{ bottom: "220px" }}
+        >
+          <h1 className="text-xl font-bold">Upgrades</h1>
+        </div>
+      )}
+
+      {windows.map((win, index) => (
+        <div
+          key={win.id}
+          className="absolute bottom-20 left-10 w-48 h-32  text-white pr-1 m- rounded-lg shadow-lg"
+          style={{
+            transform: `translate(${index * 220}px, 0)`, // Adjust the gap between windows (side-by-side stacking)
+          }}
+        >
+          <button
+            className="mt-2 bg-blue-500 text-xl text-white px-auto py-1 rounded hover:bg-blue-700 transition-all"
+            onClick={() => handleDelete(win.id)}
+          >
+            Drink Dark-side Blend Coffee
+          </button>
+          <p className="text-gray-400 text-sm">
+            Doubles planets destroyed per click for 10 Galactic Credits
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
