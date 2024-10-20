@@ -43,19 +43,21 @@ export default function Home() {
       // check if the user passed 10 score to give upgrade
       const confirmed = confirm("double your clicking power??");
       if (confirmed) {
+        handleClick();
+
         setIncrement(increment * 2); //doubles the clicking points and rests score
         setScore(score - double);
         setDouble(double ** 9999);
       }
-    } else {
     }
     if (score >= triple) {
       const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
       if (confirmed) {
+        handleClick();
+
         setIncrement(increment * 3);
         setScore(score - triple);
         setTriple(triple ** 9999);
-      } else {
       }
     }
     if (score === quad) {
@@ -65,6 +67,8 @@ export default function Home() {
       if (score >= triple) {
         const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
         if (confirmed) {
+          handleClick();
+
           setIncrement(increment * 3);
           setScore(score - triple);
           setTriple(triple ** 9999);
@@ -73,13 +77,15 @@ export default function Home() {
     }
 
     if (buttonClicks === 0) {
-      return toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus);
+      toggleModal(setWelcomeWindowStatus, WelcomeWindowStatus);
     } else if (score >= achievementOne) {
       toggleModal(setAchievmentWindowStatus, AchievmentWindowStatus);
       setAchievementOne(achievementOne ** 999);
-      return handleClick();
-    } else if (current === 15) {
-      return handleClick();
+    } else if (score >= achievementTwo) {
+      toggleModal(
+        setSecondAchievmentWindowStatus,
+        SecondAchievmentWindowStatus
+      );
     }
 
     return;
