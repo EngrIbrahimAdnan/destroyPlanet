@@ -41,38 +41,30 @@ export default function Home() {
     setButtonClicks(current);
     if (score >= double) {
       // check if the user passed 10 score to give upgrade
-      const confirmed = confirm("double your clicking power??");
-      if (confirmed) {
-        handleClick();
+      // const confirmed = confirm("double your clicking power??");
+      // if (confirmed) {
+      handleClick();
+      setDouble(double ** 9999);
 
-        setIncrement(increment * 2); //doubles the clicking points and rests score
-        setScore(score - double);
-        setDouble(double ** 9999);
-      }
+      // }
     }
     if (score >= triple) {
-      const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
-      if (confirmed) {
-        handleClick();
+      handleClick();
 
-        setIncrement(increment * 3);
-        setScore(score - triple);
-        setTriple(triple ** 9999);
-      }
+      // setIncrement(increment * 3);
+      // setScore(score - triple);
+      setTriple(triple ** 9999);
     }
     if (score === quad) {
       const confirmed = confirm(
         "Quadrople your destruction pppppoooooooooweeerrr??"
       );
       if (score >= triple) {
-        const confirmed = confirm("TTTTTRRRRRRIIIIIPPPPPPPLLLEEE??");
-        if (confirmed) {
-          handleClick();
+        handleClick();
 
-          setIncrement(increment * 3);
-          setScore(score - triple);
-          setTriple(triple ** 9999);
-        }
+        //   setIncrement(increment * 3);
+        //   setScore(score - triple);
+        setTriple(triple ** 9999);
       }
     }
 
@@ -92,6 +84,8 @@ export default function Home() {
   };
 
   const handleDelete = (id) => {
+    setIncrement(increment * 2); //doubles the clicking points and rests score
+    setScore(score - double);
     setWindows((prevWindows) => prevWindows.filter((win) => win.id !== id));
   };
 
