@@ -85,7 +85,7 @@ export default function Home() {
 
   const handleDelete = (id) => {
     setIncrement(increment * 2); //doubles the clicking points and rests score
-    setScore(score - double);
+    setScore(score - 10);
     setWindows((prevWindows) => prevWindows.filter((win) => win.id !== id));
   };
 
